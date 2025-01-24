@@ -58,6 +58,8 @@ INSTALLED_APPS = [
     "drf_spectacular",
     "django_filters",
     "accounts",
+    "hotels",
+    "rooms",
 ]
 
 MIDDLEWARE = [
