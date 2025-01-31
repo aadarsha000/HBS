@@ -24,10 +24,10 @@ class CustomRegisterAPIView(generics.GenericAPIView):
             serializer.is_valid(raise_exception=True)
             user = serializer.save()
 
-            user_data = self.get_serializer(user).data
+            # user_data = self.get_serializer(user).data
             return SuccessResponse(
-                message="User registered successfully. Verification email has been sent to your email address",
-                data=user_data,
+                message="User registered successfully",
+                data=[],
             )
         except ValidationError as e:
             return FailedResponse(message=serializer.errors)

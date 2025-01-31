@@ -3,7 +3,8 @@ from rest_framework.permissions import IsAdminUser
 
 from .models import Room, RoomTypes
 from .serializers import RoomSerializer, RoomTypeSerializer
-from .filters import RoomFilter
+from .filters.rooms import RoomFilters
+from .filters.room_types import RoomTypesFilters
 
 
 class AdminRoomViewSet(ModelViewSet):
@@ -21,9 +22,10 @@ class AdminRoomTypeViewSet(ModelViewSet):
 class RoomTypeViewSet(ReadOnlyModelViewSet):
     queryset = RoomTypes.objects.all()
     serializer_class = RoomTypeSerializer
+    filterset_class = RoomTypesFilters
 
 
 class RoomViewSet(ReadOnlyModelViewSet):
     queryset = Room.objects.all()
     serializer_class = RoomSerializer
-    filterset_class = RoomFilter
+    filterset_class = RoomFilters

@@ -40,7 +40,11 @@ CSRF_TRUSTED_ORIGINS = [
     "http://localhost:3001",
     "http://127.0.0.1:3001",
     "http://localhost:3002",
-    "http://127.0.0.1:300",
+    "http://127.0.0.1:3002",
+    "http://localhost:5174",
+    "http://127.0.0.1:5174",
+    "http://localhost:5173",
+    "http://127.0.0.1:5173",
 ]
 
 CORS_ALLOWED_ORIGINS = CSRF_TRUSTED_ORIGINS
@@ -60,6 +64,8 @@ INSTALLED_APPS = [
     "accounts",
     "hotels",
     "rooms",
+    "booking",
+    "payments",
 ]
 
 MIDDLEWARE = [
@@ -145,6 +151,9 @@ USE_TZ = True
 
 STATIC_URL = "static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")
+
+MEDIA_URL = "/media/"
+MEDIA_ROOT = BASE_DIR / "media"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
