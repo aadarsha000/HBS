@@ -24,11 +24,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the Django project code
 COPY . .
 
-# Collect static files during build time (optional)
-RUN python manage.py collectstatic --noinput
-
-# Expose the desired port
-EXPOSE 8000
-
-# Default command to run the Django app using gunicorn
-CMD ["gunicorn", "--bind", "0.0.0.0:8000", "config.wsgi:application", "--access-logfile", "-", "--workers=3"]
+CMD ["sh", "-c", "cron && ./initial_script.sh"]
