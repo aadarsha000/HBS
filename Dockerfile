@@ -24,4 +24,4 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copy the Django project code
 COPY . .
 
-CMD ["sh", "-c", "cron && ./initial_script.sh"]
+CMD ["./initial_script.sh"]
