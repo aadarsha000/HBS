@@ -81,6 +81,8 @@ class UserSerializer(serializers.ModelSerializer):
             "country",
             "address",
             "city",
+            "is_superuser",
+            "role",
         ]
 
 

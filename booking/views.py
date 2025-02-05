@@ -15,6 +15,7 @@ from shared.custom_response import SuccessResponse, FailedResponse
 class UserBookingView(ModelViewSet):
     serializer_class = BookingSerializers
     permission_classes = [IsAuthenticated]
+    queryset = Booking.objects.all()
 
     def get_queryset(self):
         return Booking.objects.filter(user=self.request.user)
@@ -31,6 +32,7 @@ class UserBookingView(ModelViewSet):
 class AdminBookingView(ModelViewSet):
     serializer_class = BookingSerializers
     permission_classes = [IsAdminUser]
+    queryset = Booking.objects.all()
 
     def get_serializer_class(self):
         if self.action in ["create", "update", "partial_update"]:

@@ -86,3 +86,32 @@ class PasswordChangeAPIView(generics.GenericAPIView):
             return FailedResponse(message=serializer.errors)
         except Exception as e:
             return FailedResponse(message=e)
+
+
+class UserProfileView(generics.GenericAPIView):
+    permission_classes = [permissions.IsAuthenticated]
+    serializer_class = UserSerializer
+
+    def get(self, request):
+        try:
+            user = request.user
+            profile = UserSerializer(user)
+            return SuccessResponse(
+                message="Profile fetch successfully", data=profile.data
+            )
+        except Exception as e:
+            return FailedResponse(message=e)
+
+    def put(self, request):
+        try:
+            user = request.user
+            profile = UserSerializer(instance=user, data=request.data, partial=True)
+            if profile.is_valid():
+                profile.save()
+                return SuccessResponse(
+                    message="Profile updated successfully", data=profile.data
+                )
+            else:
+                return FailedResponse(message="Validation failed", data=profile.errors)
+        except Exception as e:
+            return FailedResponse(message=e)
